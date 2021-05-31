@@ -1,0 +1,28 @@
+{
+    "anims": [
+        {
+            "key": "swing",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 12,
+            "frames": [
+                {
+                    "key": "swing",
+                    "frame": "sword1"
+                },
+                {
+                    "key": "swing",
+                    "frame": "sword3"
+                },
+                {
+                    "key": "swing",
+                    "frame": "sword2"
+                },
+                {
+                    "key": "swing",
+                    "frame": "sword"
+                }
+            ]
+        }
+    ]
+}
