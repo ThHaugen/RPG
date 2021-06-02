@@ -26,6 +26,7 @@ export default class MainScene extends Phaser.Scene {
         const layer1 = map.createStaticLayer('Ground', tileset, 0, 0);
         const layer2 = map.createStaticLayer('Collide', tileset, 0, 0);
         const layer3 = map.createStaticLayer('Top', tileset, 0, 0);
+        const layer4 = map.createStaticLayer('Items', tileset, 0, 0);
         const houseCollide = map.createStaticLayer('House_collide', houseset, 0, 0);
         const houseTop = map.createStaticLayer('House_top', houseset, 0, 0);
         //layer1.setCollisionByProperty({collides:true});
@@ -34,6 +35,15 @@ export default class MainScene extends Phaser.Scene {
         layer3.setDepth(100);
         houseTop.setDepth(100);
         
+
+        this.swords = this.physics.add.group();
+        this.staves = this.physics.add.group();
+
+        layer4.forEachTile(tile => {
+            if(tile.index !== -1){
+                console.log(tile);
+            }
+        })
         
         //this.swords = new Items('Object Layer 1', 'sword', map);
         //this.staves = new Items('Object Layer 1', 'staff', map);
