@@ -41,7 +41,7 @@ export default class MainScene extends Phaser.Scene {
 
         layer4.forEachTile(tile => {
             if(tile.index !== -1){
-                console.log(tile);
+                console.log(tile.properties.type);
             }
         })
         
