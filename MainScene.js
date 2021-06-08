@@ -41,7 +41,13 @@ export default class MainScene extends Phaser.Scene {
 
         layer4.forEachTile(tile => {
             if(tile.index !== -1){
-                console.log(tile.properties.type);
+                //console.log(tile.properties.type);
+                const pickup;
+                const x = tile.getCenterX();
+                const y = tile.getCenterY();
+                if(tile.properties.type == 'sword'){
+                    console.log('sword')
+                }
             }
         })
         
