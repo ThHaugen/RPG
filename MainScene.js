@@ -36,17 +36,18 @@ export default class MainScene extends Phaser.Scene {
         houseTop.setDepth(100);
         
 
-        this.swords = this.physics.add.group();
-        this.staves = this.physics.add.group();
+        this.items = this.physics.add.group();
 
         layer4.forEachTile(tile => {
             if(tile.index !== -1){
                 //console.log(tile.properties.type);
-                const pickup;
+                let pickup;
                 const x = tile.getCenterX();
                 const y = tile.getCenterY();
                 if(tile.properties.type == 'sword'){
-                    console.log('sword')
+                    pickup = this.items.create(x, y, 'sword');
+                } else if(tile.properties.type == 'staff'){
+                    pickup = this.items.create(x, y, 'staff');
                 }
             }
         })
@@ -84,9 +85,16 @@ export default class MainScene extends Phaser.Scene {
         this.physics.add.collider(this.player, houseCollide);
         this.physics.add.collider(this.enemies, houseCollide);
         this.physics.add.overlap(this.player, this.enemies, this.handlePlayerCollision, null, this);
+        this.physics.add.overlap(this.player, this.items, this.handleItemCollision, null, this);
         this.cameras.main.startFollow(this.player, layer1);
         this.healthbar = new UI(this, 20, 18, this.player.hp)
         
+    }
+
+    handleItemCollision(p, i){
+        i.destroy();
+        p.equipItem(i.texture);
+        console.log(i.texture);
     }
 
     handlePlayerCollision(p, e){

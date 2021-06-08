@@ -37,6 +37,10 @@ export default class Player extends Phaser.GameObjects.Sprite {
         
     }
 
+    equipItem(texture) {
+        console.log(texture);
+    }
+
     update() {
         const speed = 100;
         if(this.isDead) return;
