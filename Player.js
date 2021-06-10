@@ -17,11 +17,14 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
         this.body.setSize(12,8,true);
         this.body.setOffset(10, 24, true);
+        this.container = this.scene.add.container(16, 16);
+        this.container.add(this);
      }
 
     static preload(scene) {
         scene.load.atlas('mage', 'assets/mage.png', 'assets/mage_atlas.json');
         scene.load.animation('mage_anim', 'assets/mage_anim.json');
+        scene.load.animation('swing_anim', 'assets/swing_anim.json');
     }
 
     checkDead() {
@@ -39,6 +42,9 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
     equipItem(texture) {
         console.log(texture);
+        let temp = this.scene.add.sprite(this.x, this.y, texture)
+        this.setTexture(texture);
+        this.container.add(temp);
     }
 
     update() {
@@ -61,9 +67,10 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.body.velocity.normalize().scale(speed);
         
         if(Math.abs(this.body.velocity.x) > 0.1 || Math.abs(this.body.velocity.y) > 0.1) {
-            this.anims.play('mage_walk', true);
+            //this.anims.play('mage_walk', true);
+            this.anims.play('swing', true);
         }else {
-            this.anims.play('mage_idle', true);
+            //this.anims.play('mage_idle', true);
         }
     }
 }

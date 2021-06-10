@@ -94,7 +94,7 @@ export default class MainScene extends Phaser.Scene {
     handleItemCollision(p, i){
         i.destroy();
         p.equipItem(i.texture);
-        console.log(i.texture);
+        console.log(i)
     }
 
     handlePlayerCollision(p, e){
